@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clone Quill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/fontello.css">
+  <link rel="stylesheet" href="css/clonequill.css">
+</head>
+<body>
+<!--
+  This page license.
+  License: Public Domain(http://creativecommons.org/publicdomain/zero/1.0/)
+  License: NYSL(http://www.kmonos.net/nysl/index.en.html)
+-->
+<!-- Login View -->
+<section id="login">
+<div id="logo-wrapper">
+<img id="logo-image" src="clonequill.png" alt="logo">
+</div>
+<div id="description-wrapper">
+  <button id="login-text"><i class="icon-dropbox"></i>Login to clone quill.</button>
+<h1>description</h1>
+<ul class="english">
+  <li>This is a note application, such as a quill.</li>
+  <li>It will use the Dropbox.</li>
+  <li>You can use for free.</li>
+  <li>Directory called quillclone will be generated under the application directory of Dropbox. File public link will be generated there.</li>
+  <li>License: Public Domain(<a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_blank">http://creativecommons.org/publicdomain/zero/1.0/</a>)</li>
+  <li>License: NYSL(<a href="http://www.kmonos.net/nysl/index.en.html" target="_blank">http://www.kmonos.net/nysl/index.en.html</a>)</li>
+</li>
+</ul>
+<ul class="japanese">
+  <li>これはquillのようなメモアプリです</li>
+  <li>Dropboxを利用します。</li>
+  <li>無料で使えます。</li>
+  <li>Dropboxのアプリディレクトリの下にquillcloneというディレクトリが生成されます。そこに公開リンク用のファイルが生成されます。</li>
+  <li>これはPublic Domain Softwareです。</li>
+  <li>お好みでNYSLを選ぶことも出来ます。</li>
+</ul>
+Icon at <a href="http://www.vectors.im/vector/old-paper-with-feather-vector-icon-free">http://www.vectors.im/vector/old-paper-with-feather-vector-icon-free</a>
+<!-- Share button -->
+<div class="login-share">
+<a href="http://b.hatena.ne.jp/entry/https://dl.dropboxusercontent.com/u/335896/clonequill/index.html" class="hatena-bookmark-button" data-hatena-bookmark-title="Clone Quill" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+
+<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ArcCosine" data-count="none">Tweet</a>
+
+
+</div>
+<div class="login-contact">
+contact:<a href="https://twitter.com/ArcCosine" target="_blank">https://twitter.com/ArcCosine</a>
+</div>
+<!-- Share End -->
+</div>
+</section>
+
+<!-- Edit View -->
+<section id="edit">
+  <label for="edit-title" id="edit-title-label">Title</label>
+  <input id="edit-title" type="text" value="">
+  <br>
+  <textarea id="edit-area" name="edit-area"></textarea>
+  <br>
+  <button id="edit-save">save</button>
+  <button id="edit-delete">delete</button>
+  <input id="edit-id" type="hidden" value="">
+  <br>
+  <div class="edit-select">
+    <input type="radio" id="edit-public" name="edit-share" value="public"><label for="edit-public">Public</label>
+    <input type="radio" id="edit-private" name="edit-share" value="private" checked="checked"><label for="edit-private">Private</label>
+  </div>
+  <div id="edit-share-button"></div>
+</section>
+
+<!-- List View -->
+<section id="list">
+  <h1>List of note.</h1>
+  <ul id="list-datas"></ul>
+  <button class="logout">logout</button>
+</section>
+
+<!-- Help View -->
+<section id="help">
+  <h1>Keyboard Shortcuts(List page only)</h1>
+  <dl>
+    <dt>j or Ctrl+p or down</dt>
+    <dd>Next Item</dd>
+    <dt>k or Ctrl+n or up</dt>
+    <dd>Previous Item</dd>
+    <dt>Enter</dt>
+    <dd>Select Item</dd>
+    <dt>?(Shift+/)</dt>
+    <dd>Show Help</dd>
+  </dl>
+</section>
+
+<!-- Common Script -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="7fbztn41f0rkbif"></script>
+<!-- Edit Script -->
+<script src="js/cq_auth.js" charset="utf-8"></script>
+<script src="js/cq_edit.js" charset="utf-8"></script>
+<script src="js/cq_list.js" charset="utf-8"></script>
+<script src="js/cq_keyboard.js" charset="utf-8"></script>
+<script src="js/cq_common.js" charset="utf-8"></script>
+<!-- Share button -->
+<script type="text/javascript" src="//cdn-ak.b.st-hatena.com/js/bookmark_button.js" charset="utf-8"></script>
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</body>
+</html>
