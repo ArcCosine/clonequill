@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-html, body, section, input, textarea, label, span, ul, li, h1, p {
+html, body, section, input, textarea, label, span, ul, li, h1, p, div {
   margin: 0;
   padding: 0;
   line-height: 1.0;
@@ -159,6 +159,16 @@ li {
   line-height: 1.4;
 }
 
+.clear:before,
+.clear:after {
+  display: table;
+  content: " ";
+}
+
+.clear:after {
+  clear: both;
+}
+
 
 /* Responsive */
 /* For Desktop */
@@ -178,19 +188,12 @@ li {
 
   #logo-wrapper {
     width: 256px;
-    height: 256px;
-    float: left;
     margin-right: 16px;
+    float: left;
   }
 
   #logo-image {
     width: 256px;
-    height: 256px;
-  }
-
-  #login {
-    width: 100%;
-    height: 100%;
   }
 
   #login h1 {
@@ -200,16 +203,20 @@ li {
   }
 
   #description-wrapper {
+    padding: 8px;
     overflow: hidden;
-    padding-left: 8px;
   }
 
   #login ul {
     background-color: #F0ECEB;
     border-left: 8px solid #f7f7f9;
     border-radius: 4px;
-    padding: 12px 0px 12px 8px;
+    padding: 12px 8px 12px 8px;
     margin-bottom: 16px;
+  }
+
+  #login ul li {
+    word-wrap: break-word;
   }
 
   #edit {
