@@ -105,6 +105,10 @@ dd {
   float: left;
 }
 
+#share-hatena-img {
+  border: none;
+}
+
 .login-contact {
   padding: 12px 0px;
   clear: both;
