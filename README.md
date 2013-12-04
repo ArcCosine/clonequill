@@ -11,3 +11,14 @@ Because it was created through Google Translate, this English has become quite s
 - NYSL
 
 YOU CAN CHOOSE YOUR FAVORITE LICENSE!:)
+
+## Install.
+
+Edit js/cq_auth.js.
+
+ var DROPBOX_APP_KEY = "7fbztn41f0rkbif";  //Set your app key
+
+Change key **7fbztn41f0rkbif** to your "App key".
+
+Set OAuth redirect URIs on dropbox's app console.
+
