@@ -12,6 +12,8 @@ Able to reproduce similar functionality by using the Dropbox is the purpose in t
 
 Because it was created through Google Translate, this English has become quite strange to English. Please note.
 
+URL : https://dl.dropboxusercontent.com/u/335896/clonequill/index.html
+
 ## License.
 - Public Domain
 - NYSL
