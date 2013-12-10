@@ -128,20 +128,37 @@ CQList.prototype = {
     });
   },
   loop: function(){
-    this.save(true);
+    this.localSave();
   },
-  save: function(isLoop){
-    var _self = this;
+  localSave: function(){
+    var title = $("#edit-title").val(), content = $("#edit-area").val(), id = $("#edit-id").val(),
+        share = $("input[name='edit-share']:checked").val(),
+        sharelink = $("#edit-share-button a").length > 0 ? $("#edit-share-button a").attr("href") : "";
 
-    isLoop = (typeof isLoop === "undefind" ) ? false : isLoop;
+    var saveobj={
+      title: title,
+      content: content,
+      id: id,
+      share: share,
+      sharelink: share
+    };
+
+
+    var work = JSON.stringify(saveobj);
+    //console.log(work);
+
+    localStorage.setItem("clonequill", work );
+    localStorage.setItem("clonequill_local", new Date().getTime() );
+
+  },
+  save: function(){
+    var _self = this;
 
     var title = $("#edit-title").val(), content = $("#edit-area").val(), id = $("#edit-id").val(),
         share = $("input[name='edit-share']:checked").val(),
         sharelink = $("#edit-share-button a").length > 0 ? $("#edit-share-button a").attr("href") : "";
 
-    if( (id === "" || id === "NEW") && isLoop ){ return ; }  //New Text Don't auto save.
-
-    if( !isLoop ){ this.edit.stop(); }
+    this.edit.stop();
 
     if( title === "" ){ title = "NO TITLE"; }
 
@@ -163,7 +180,7 @@ CQList.prototype = {
       record.set("content",content);
       record.set("share",share);
 
-      if( share === "public" && sharelink !== "" && !isLoop ){
+      if( share === "public" && sharelink !== ""  ){
         record.set("link",sharelink);
         if( oldcontent !== content ){
           this.write( id, content );
@@ -173,7 +190,10 @@ CQList.prototype = {
   },
   write: function( id, content ){
     this.client.writeFile( id + ".txt", content, function(error){
-      if( error) { console.log(error); }
+      if(error) {
+        console.log("read error");
+        console.log(error);
+      }
     });
   },
   del: function(){
@@ -185,8 +205,22 @@ CQList.prototype = {
       return;
     }
     if( window.confirm("Are you sure you want to delete ?") ){
-      this.table.get(id).deleteRecord();
+
+      var record = this.table.get(id);
+      var share = record.get("share");
+      if( share === "public" ){
+        this.remove(id);
+      }
+      record.deleteRecord();
     }
+  },
+  remove: function(id) {
+    this.client.remove( id + ".txt", function(error){
+      if(error) {
+        console.log("remove error");
+        console.log(error);
+      }
+    });
   },
   showList: function(){
     $("#list,#login,#edit").hide();

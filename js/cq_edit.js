@@ -37,7 +37,7 @@ CQEdit.prototype = {
     $("#edit").show();
   },
   autosave: function(callback){
-    this.timer = setInterval(callback, 10000 );
+    this.timer = setInterval(callback, 3000 );
   },
   stop: function(){
     clearInterval(this.timer);

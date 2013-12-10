@@ -38,6 +38,7 @@ CQAuth.prototype = {
     var _self = this;
     this.client.writeFile( filename, txt, function(error, status){
       if( error ){
+        console.log("share error");
         console.log(error);
       } else {
         _self.shareUrl(filename);
@@ -47,6 +48,7 @@ CQAuth.prototype = {
   shareUrl: function( filename ){
     this.client.makeUrl( filename, {}, function( error , share ){
       if( error ){
+        console.log("share url error");
         console.log(error);
       } else {
         $("#edit-share-button").empty();

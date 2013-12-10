@@ -183,11 +183,11 @@ li {
   }
 
   h1 {
-    margin: 9px 0px 0px;
+    margin: 10px 0px 0px;
     padding: 8px 8px 8px 16px;
     font-size: 16px;
     font-weight: normal;
-    background-color: #ABABAD;
+    background-color: #78787A;
     color: #ffffff;
   }
 
@@ -214,8 +214,8 @@ li {
   #login ul {
     background-color: #C4C4C6;
     border-radius: 4px;
-    padding: 12px 8px 12px 8px;
-    margin: 16px 0px;
+    padding: 12px;
+    margin: 12px 0px;
   }
 
   #login ul li {
@@ -224,17 +224,34 @@ li {
 
   #edit {
     width: 60%;
-    padding: 10px;
+    padding-top: 10px;
   }
   label#edit-title-label {
-    width: 82px;
+    width: 33.33333333333333%;
+    float: left;
     display: inline-block;
     padding: 8px;
+    line-height: 20px;
     color: #ffffff;
-    background: #ABABAD;
+    background: #78787A;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
   }
   #edit-title {
-    width: 400px;
+    width: 66.66666666666666%;
+    float: left;
+    display: inline-block;
+    padding: 8px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+
+  #edit-title:after {
+    display: table;
+    content: " ";
+    clear: both;
   }
 
   #edit-area {

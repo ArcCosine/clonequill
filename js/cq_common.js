@@ -45,6 +45,8 @@ function init(){
   });
 
   $("#edit-private").on("click", function(event){
+    var id = $("#edit-id").val();
+    list.remove(id);
     $("#edit-share-button").empty();
   });
 
