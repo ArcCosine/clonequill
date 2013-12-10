@@ -8,6 +8,8 @@ CQEdit.prototype = {
     this.content = "";
     this.setTitle(this.title);
     this.setText(this.content);
+    this.timer = null;
+
     $("#edit-share-button").empty();
   },
   setTitle: function(text){
@@ -29,5 +31,15 @@ CQEdit.prototype = {
   },
   focus: function(){
     $("#edit-title").focus();
+  },
+  show: function(){
+    $('#list,#login,#edit').hide();
+    $('#edit').show();
+  },
+  autosave: function(callback){
+    this.timer = setInterval(callback, 3000 );
+  },
+  stop: function(){
+    clearInterval(this.timer);
   }
 }

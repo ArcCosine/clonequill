@@ -4,9 +4,10 @@ function CQList(){
 
 CQList.prototype = {
   init : function(){
-    this.NEW_TEXT = '<i class="icon-plus"></i>New Text'
+    this.NEW_TEXT = '<i class="icon-plus"></i>New Text';
     this.client = null;
     this.table = null;
+    this.edit = null;
   },
   load: function(client){
     this.client = client;
@@ -61,30 +62,32 @@ CQList.prototype = {
     $('#list-datas').append(list);
   },
   showEditor: function(id){
-    var edit = new CQEdit();
+    var _self = this;
+
+    this.edit = new CQEdit();
 
     if( id !== "NEW" ){
 
       var record = this.table.get(id);
 
-      edit.setTitle(record.get("title"));
-      edit.setText(record.get("content"));
+      this.edit.setTitle(record.get("title"));
+      this.edit.setText(record.get("content"));
       if( record.get('share')  ===  "public" ){
         $('input#edit-public').prop("checked", true );
         var link = record.get('link');
         if(  link !== "" ){
-          edit.setLink(link);
+          this.edit.setLink(link);
         }
       } else {
         $('input#edit-private').prop("checked", true );
       }
     }
-    edit.setId(id);
+    this.edit.setId(id);
 
-    $('#list,#login,#edit').hide();
-    $('#edit').show();
+    this.edit.show();
+    this.edit.autosave(function(){ _self.loop(); });
 
-    edit.focus();
+    this.edit.focus();
 
   },
   addEvent: function(){
@@ -100,12 +103,20 @@ CQList.prototype = {
 
     });
   },
-  save: function(){
+  loop: function(){
+    this.save(true);
+  },
+  save: function(isLoop){
     var _self = this;
+    isLoop = (typeof isLoop === "undefind" ) ? false : isLoop;
+
+    if( !isLoop ){
+      this.edit.stop();
+    }
 
     var title = $("#edit-title").val(), content = $('#edit-area').val(), id = $('#edit-id').val(),
-    share = $('input[name="edit-share"]:checked').val(),
-    sharelink = $('#edit-share-button a').length > 0 ? $('#edit-share-button a').attr("href") : "";
+        share = $('input[name="edit-share"]:checked').val(),
+        sharelink = $('#edit-share-button a').length > 0 ? $('#edit-share-button a').attr("href") : "";
 
     if( title === "" ){ title = "NO TITLE"; }
 
@@ -127,17 +138,18 @@ CQList.prototype = {
       record.set('content',content);
       record.set('share',share);
 
-      if( share === "public" && sharelink !== "" ){
+      if( share === "public" && sharelink !== "" && !isLoop ){
         record.set('link',sharelink);
         if( oldcontent !== content ){
-          this.client.writeFile(id+".txt", content, function(error){
-            if( error ){
-              console.log(error);
-            }
-          });
+          this.write( id, content );
         }
       }
     }
+  },
+  write: function( id, content ){
+    this.client.writeFile( id + ".txt", content, function(error){
+      if( error) { console.log(error); }
+    });
   },
   del: function(){
     var id = $('#edit-id').val();
