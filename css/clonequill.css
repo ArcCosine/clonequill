@@ -227,7 +227,7 @@ li {
     padding-top: 10px;
   }
   label#edit-title-label {
-    width: 33.33333333333333%;
+    width: 25%;
     float: left;
     display: inline-block;
     padding: 8px;
@@ -239,7 +239,7 @@ li {
     -moz-box-sizing: border-box;
   }
   #edit-title {
-    width: 66.66666666666666%;
+    width: 75%;
     float: left;
     display: inline-block;
     padding: 8px;
