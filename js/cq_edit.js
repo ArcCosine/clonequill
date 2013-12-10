@@ -33,11 +33,11 @@ CQEdit.prototype = {
     $("#edit-title").focus();
   },
   show: function(){
-    $('#list,#login,#edit').hide();
-    $('#edit').show();
+    $("#list,#login,#edit").hide();
+    $("#edit").show();
   },
   autosave: function(callback){
-    this.timer = setInterval(callback, 3000 );
+    this.timer = setInterval(callback, 10000 );
   },
   stop: function(){
     clearInterval(this.timer);

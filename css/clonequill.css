@@ -183,11 +183,12 @@ li {
   }
 
   h1 {
-    margin: 16px 0px;
-    padding: 0px 16px 0px 8px;
+    margin: 9px 0px 0px;
+    padding: 8px 8px 8px 16px;
     font-size: 16px;
     font-weight: normal;
-    border-left: 8px solid #f7f7f9;
+    background-color: #ABABAD;
+    color: #ffffff;
   }
 
   #logo-wrapper {
@@ -201,7 +202,6 @@ li {
   }
 
   #login h1 {
-    background-color: #F0ECEB;
     padding: 12px 0px 12px 8px;
     border-radius: 4px;
   }
@@ -212,11 +212,10 @@ li {
   }
 
   #login ul {
-    background-color: #F0ECEB;
-    border-left: 8px solid #f7f7f9;
+    background-color: #C4C4C6;
     border-radius: 4px;
     padding: 12px 8px 12px 8px;
-    margin-bottom: 16px;
+    margin: 16px 0px;
   }
 
   #login ul li {
@@ -230,8 +229,9 @@ li {
   label#edit-title-label {
     width: 82px;
     display: inline-block;
-    border-left: 8px solid  #f7f7f9;
-    padding-left: 8px;
+    padding: 8px;
+    color: #ffffff;
+    background: #ABABAD;
   }
   #edit-title {
     width: 400px;

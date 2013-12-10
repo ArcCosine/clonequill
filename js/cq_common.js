@@ -15,81 +15,64 @@ function init(){
   if( auth.isLogin() ){
     list.load(auth.client);
     list.create();
-
-    $('#list,#login,#edit').hide();
-    $('#list').show();
-
+    list.showList();
   }
 
-  $('#edit-title').on("keydown", function(event){
+  $("#edit-title").on("keydown", function(event){
     if( event.keyCode === 13 ){ //Return
       event.preventDefault();
       event.stopPropagation();
-      $('#edit-area').focus();
+      $("#edit-area").focus();
     }
   });
 
-  $('#edit-save').on("click", function(event){
+  $("#edit-save").on("click", function(event){
     list.save();
     list.create();
-
-    $('#list,#login,#edit').hide();
-    $('#list').show();
+    list.showList();
   });
 
-  $('#edit-delete').on("click", function(event){
+  $("#edit-delete").on("click", function(event){
     list.del();
     list.create();
-
-    $('#list,#login,#edit').hide();
-    $('#list').show();
+    list.showList();
   });
 
-  $('.logout').on("click", function(event){
+  $("#edit-public").on("click", function(event){
+    var text = $("#edit-area").val();
+    var title= $("#edit-id").val();
+    auth.share(title+".txt", text);
+  });
+
+  $("#edit-private").on("click", function(event){
+    $("#edit-share-button").empty();
+  });
+
+
+  $(".logout").on("click", function(event){
     auth.logout();
   });
+
 
   $(document).on("keydown", function(event){
 
     if( !/INPUT|TEXTAREA|BUTTON/.test(event.target.tagName.toUpperCase()) ){
-      if( event.keyCode === 74 ){ //j
-        keyhelper.nextItem();
-      } else if( event.keyCode === 75 ){  //k
-        keyhelper.prevItem();
-      } else if( event.keyCode === 13 ){ //Enter
-        keyhelper.selectItem();
-      } else if( event.keyCode === 191 || event.keyCode === 27) { //? or ESC
-        keyhelper.toggleHelp();
-      } else if ( event.ctrlKey && event.keyCode === 80 ) { // Ctrl + p
-        keyhelper.prevItem();
-      } else if ( event.ctrlKey && event.keyCode === 78 ) { // Ctrl + n
-        keyhelper.nextItem();
-      } else if ( event.keyCode === 38 ){ //up
-        keyhelper.prevItem();
-      } else if ( event.keyCode === 40 ){ // down
-        keyhelper.nextItem();
-      } else if ( event.shiftKey && event.keyCode == 76 ) { // Shift + l as secret command
-        keyhelper.loginStart();
-      } else if ( event.shiftKey && event.keyCode == 79 ) { // Shift + o as secret command
-        keyhelper.logoutStart();
-      }
+      var option =  {
+        shift: event.shiftKey,
+        ctrl: event.ctrlKey
+      };
+      keyhelper.control( event, option );
     }
 
     if ( event.ctrlKey && event.keyCode == 83 ) { // Ctrl + s as secret command
       keyhelper.saveStart();
     }
 
+    if ( $('#edit:visible') && event.ctrlKey && event.keyCode == 68 ) { // Ctrl + d as secret command
+      keyhelper.delStart();
+    }
 
-  });
 
-  $('#edit-public').on("click", function(event){
-    var text = $('#edit-area').val();
-    var title= $('#edit-id').val();
-    auth.share(title+".txt", text);
-  });
-
-  $('#edit-private').on("click", function(event){
-    $("#edit-share-button").empty();
   });
 
 }
