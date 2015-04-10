@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>encrypt</title>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+</head>
+<body>
+<label for="encrypt">パスワード入力</label>
+<input id="encrypt" type="password" value="">
+<input type="submit" value="展開" onclick="decryptStr()">
+
+<div id="result"></div>
+
+<script>
+function init(){
+  // 暗号化するための、パスフレーズ
+  var txt_key = "0123456789ABCDEF0123456789ABCDEF";
+ 
+  // 暗号化したい元のデータ
+  var txt_plain = "秘密の文章";
+  var utf8_plain = CryptoJS.enc.Utf8.parse(txt_plain);
+ 
+  // 暗号化
+  var encrypted = CryptoJS.AES.encrypt( utf8_plain, txt_key );
+  console.log(encrypted.toString());
+
+}
+
+function decryptStr(){
+  // 暗号化するための、パスフレーズ
+  var txt_key = "0123456789ABCDEF0123456789ABCDEF";
+
+  var encrypted = document.getElementById("encrypt").value;
+
+  // 復号化
+  var decrypted = CryptoJS.AES.decrypt( encrypted , txt_key );
+  var txt_dexrypted = decrypted.toString(CryptoJS.enc.Utf8);
+
+  console.log(txt_dexrypted);
+
+}
+init();
+</script>
+</body>
+</html>
