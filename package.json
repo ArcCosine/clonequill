@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "clone quill",
   "main": "main.js",
-  "private" : true,
+  "private": true,
   "dependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.4.0",
     "grunt-contrib-connect": "*",
     "grunt-contrib-watch": "*"
   },
